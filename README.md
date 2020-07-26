@@ -1,9 +1,10 @@
 # khu-bot
 A Discord notification bot for Kyunghee Univ CE students  
-경희대학교 컴퓨터공학과 학생을 위한 디스코드 알림 봇
-
 It automatically crawls various information of the university, and alerts via discord when new posts are posted.  
-대학생활을 하면서 필요한 여러 정보를 크롤링하고 디스코드를 통해 알림해줍니다.
+
+경희대학교 컴퓨터공학과 학생을 위한 디스코드 알림 봇  
+대학생활을 하면서 필요한 여러 정보를 크롤링하고 디스코드를 통해 알림해줍니다.  
+2020년 1학기 웹파이썬 과목에서 진행한 텀프로젝트입니다.
 
 ![post](https://user-images.githubusercontent.com/61305403/88489283-6866c680-cfce-11ea-9722-2f51ce9f1612.PNG)
 ![meal](https://user-images.githubusercontent.com/61305403/88489278-613fb880-cfce-11ea-88a9-623b6276de97.PNG)
@@ -14,8 +15,6 @@ Target:
 - Kyunghee software business group announcements
 - Kyunghee second dormitory (aka J dormitory) announcements
 - Kyunghee second dormitory meal
-
-2020년 1학기 웹파이썬 과목에서 진행한 텀프로젝트입니다.
 
 ## Requirements
 ```

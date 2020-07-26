@@ -11,7 +11,7 @@ import json
 # Import custom crawling module
 import crawl
 
-with open(".\config.json") as file:
+with open("config.json") as file:
     config = json.load(file)
 
 is_running = False
