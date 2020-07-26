@@ -1,0 +1,5 @@
+{
+  "TOKEN": "Enter your own discord bot token",
+  "DELAY": 600,
+  "PREFIX": "!"
+}
