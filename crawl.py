@@ -32,8 +32,8 @@ async def khu_undergraduate_crawl():
     try:
         loop = asyncio.get_event_loop()
 
-        # Timeout after 30 seconds of no load
-        req = functools.partial(requests.get, "https://www.khu.ac.kr/kor/notice/list.do?category=UNDERGRADUATE&page=1", timeout=30)
+        # Timeout after 8 seconds of no load
+        req = functools.partial(requests.get, "https://www.khu.ac.kr/kor/notice/list.do?category=UNDERGRADUATE&page=1", timeout=8)
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find("table", {"class": "board01"}).find("tbody").find_all("td", {"class": "col02"})
@@ -62,8 +62,8 @@ async def sw_business_crawl():
     try:
         loop = asyncio.get_event_loop()
 
-        # Timeout after 30 seconds of no load
-        req = functools.partial(requests.get, "http://swedu.khu.ac.kr/board5/bbs/board.php?bo_table=06_01", timeout=30)
+        # Timeout after 8 seconds of no load
+        req = functools.partial(requests.get, "http://swedu.khu.ac.kr/board5/bbs/board.php?bo_table=06_01", timeout=8)
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find_all("td", {"class": "td_num2"})
@@ -97,8 +97,8 @@ async def sw_college_crawl():
     try:
         loop = asyncio.get_event_loop()
 
-        # Timeout after 30 seconds of no load
-        req = functools.partial(requests.get, "http://software.khu.ac.kr/board5/bbs/board.php?bo_table=05_01", timeout=30)
+        # Timeout after 8 seconds of no load
+        req = functools.partial(requests.get, "http://software.khu.ac.kr/board5/bbs/board.php?bo_table=05_01", timeout=8)
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find_all("td", {"class": "td_subject"})
@@ -134,8 +134,8 @@ async def j_dormitory_crawl():
         return data
 
     try:
-        # Timeout after 60 seconds of no load
-        driver.set_page_load_timeout(60)
+        # Timeout after 90 seconds of no load
+        driver.set_page_load_timeout(90)
         await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/dorm2/00/0000.kmc")
 
         # Waiting for web load to avoid errors
@@ -174,8 +174,8 @@ async def j_meal_crawl():
         print("ERROR :", error)
     
     try:
-        # Timeout after 60 seconds of no load
-        driver.set_page_load_timeout(60)
+        # Timeout after 90 seconds of no load
+        driver.set_page_load_timeout(90)
         await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/dorm2/40/4050.kmc")
 
         # Waiting for web load to avoid errors

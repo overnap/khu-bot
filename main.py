@@ -164,12 +164,12 @@ async def main_coroutine():
         # For debugging, only work with more than one user
         if len(channels) != 0:
             futures = []
-            futures.append(asyncio.ensure_future(khu_undergraduate_alert()))
             futures.append(asyncio.ensure_future(j_dormitory_alert()))
-            futures.append(asyncio.ensure_future(j_meal_alert(t)))
+            futures.append(asyncio.ensure_future(khu_undergraduate_alert()))
             futures.append(asyncio.ensure_future(sw_college_alert()))
             futures.append(asyncio.ensure_future(sw_business_alert()))
             await asyncio.gather(*futures)
+            await j_meal_alert(t)
 
         # Record completion time
         print("[Main] Coroutine completed : " + datetime.now(timezone("Asia/Seoul")).strftime("%Y/%m/%d %H:%M:%S"))
