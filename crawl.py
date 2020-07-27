@@ -172,6 +172,7 @@ async def j_meal_crawl():
     except Exception as error:
         print("[ERROR] J_MEAL selenium firefox driver error")
         print("ERROR :", error)
+        return data
     
     try:
         # Timeout after 90 seconds of no load
