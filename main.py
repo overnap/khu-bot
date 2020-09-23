@@ -18,6 +18,7 @@ is_running = False
 bot = Bot(command_prefix=config["PREFIX"])
 
 channels = []
+channels_option = {}
 khuu_data = []
 j_data = []
 j_meal = []
@@ -52,7 +53,7 @@ async def sw_business_alert():
                 await channel.send(embed=embed)
             swb_data.append(post)
             # Delete old posts for memory management
-            if len(swb_data) > 20:
+            if len(swb_data) > 30:
                 swb_data.pop(0)
 
 async def sw_college_alert():
@@ -118,7 +119,8 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="한식", value="없음" if j_meal[5] == '' else j_meal[5], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[6] == '' else j_meal[6], inline=False)
         for channel in channels:
-            await channel.send(embed=embed)
+            if channels_option[channel] == True:
+                await channel.send(embed=embed)
     # Lunch
     elif ((t.hour == 10 and t.minute > 40) or t.hour > 10) and check_meal[1] == False:
         check_meal = [True, True, False]
@@ -133,7 +135,8 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="일품1", value="없음" if j_meal[3] == '' else j_meal[3], inline=False)
             embed.add_field(name="일품2", value="없음" if j_meal[4] == '' else j_meal[4], inline=False)
         for channel in channels:
-            await channel.send(embed=embed)
+            if channels_option[channel] == True:
+                await channel.send(embed=embed)
     # Breakfast
     elif ((t.hour == 7 and t.minute > 40) or t.hour > 7) and check_meal[0] == False:
         check_meal = [True, False, False]
@@ -146,7 +149,8 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="한식", value="없음" if j_meal[0] == '' else j_meal[0], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
         for channel in channels:
-            await channel.send(embed=embed)
+            if channels_option[channel] == True:
+                await channel.send(embed=embed)
             
 async def main_coroutine():
     # System main coroutine
@@ -187,20 +191,35 @@ async def on_ready():
 
 @bot.command()
 async def start(ctx):
-    if channels.count(ctx.channel) == 0:
+    if ctx.channel not in channels:
         channels.append(ctx.channel)
         print("[BOT] The alert started :", ctx.channel)
+        if ctx.channel not in channels_option:
+            channels_option[ctx.channel] = {"meal": True}
+            print("[BOT] The new hannel has been initialized : ")
         await ctx.send("알리미가 시작되었습니다.")
     else:
         await ctx.send("이미 알리미가 실행 중입니다.")
 
 @bot.command()
 async def stop(ctx):
-    if channels.count(ctx.channel) != 0:
+    if ctx.channel in channels:
         channels.remove(ctx.channel)
         print("[BOT] The alert stopped :", ctx.channel)
         await ctx.send("알리미가 정지되었습니다.")
     else:
         await ctx.send("알리미가 실행 중이지 않습니다.")
+
+@bot.command()
+async def meal(ctx):
+    if ctx.channel in channels:
+        if channels_option[ctx.channel]["meal"] == True:
+            channels_option[ctx.channel]["meal"] = False
+            await ctx.send("학식 알림을 껐습니다.")
+        else:
+            channels_option[ctx.channel]["meal"] = True
+            await ctx.send("학식 알림을 켰습니다.")
+    else:
+        await ctx.send("먼저 알리미를 실행해야 합니다.")
 
 bot.run(config["TOKEN"])
