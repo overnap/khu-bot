@@ -67,14 +67,17 @@ async def sw_business_crawl():
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find_all("td", {"class": "td_num2"})
-        regex = re.compile('종료')
+        regex1 = re.compile("종료")
+        regex2 = re.compile("마감")
 
         for content in raw_data:
             # TODO: Notice mark identification, not used but can be used
             # notice = True if content.text.strip() == "공지" else False
             content = content.find_next_sibling("td", {"class": "td_subject"})
             # skip if there is an [END] mark
-            if regex.search(content.a.text.strip()) != None:
+            if regex1.search(content.a.text.strip()) != None:
+                continue
+            elif regex2.search(content.a.text.strip()) != None:
                 continue
             title = content.a.text.strip()
             link = content.a.attrs["href"]
