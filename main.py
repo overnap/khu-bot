@@ -38,7 +38,7 @@ async def khu_undergraduate_alert():
                 await channel.send(embed=embed)
             khuu_data.append(post)
             # Delete old posts for memory management
-            if len(swb_data) > 20:
+            if len(khuu_data) > 20:
                 khuu_data.pop(0)
 
 async def sw_business_alert():
@@ -68,7 +68,7 @@ async def sw_college_alert():
                 await channel.send(embed=embed)
             swc_data.append(post)
             # Delete old posts for memory management
-            if len(swb_data) > 20:
+            if len(swc_data) > 20:
                 swc_data.pop(0)
 
 async def j_dormitory_alert():
@@ -83,7 +83,7 @@ async def j_dormitory_alert():
                 await channel.send(embed=embed)
             j_data.append(post)
             # Delete old posts for memory management
-            if len(swb_data) > 15:
+            if len(j_data_data) > 15:
                 j_data.pop(0)
 
 async def j_meal_alert(t:datetime):
@@ -118,6 +118,7 @@ async def j_meal_alert(t:datetime):
         else:
             embed.add_field(name="한식", value="없음" if j_meal[5] == '' else j_meal[5], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[6] == '' else j_meal[6], inline=False)
+        print("Dinner")
         for channel in channels:
             if channels_option[channel] == True:
                 await channel.send(embed=embed)
@@ -134,6 +135,7 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="한식", value="없음" if j_meal[2] == '' else j_meal[2], inline=False)
             embed.add_field(name="일품1", value="없음" if j_meal[3] == '' else j_meal[3], inline=False)
             embed.add_field(name="일품2", value="없음" if j_meal[4] == '' else j_meal[4], inline=False)
+        print("Lunch")
         for channel in channels:
             if channels_option[channel] == True:
                 await channel.send(embed=embed)
@@ -148,6 +150,7 @@ async def j_meal_alert(t:datetime):
         else:
             embed.add_field(name="한식", value="없음" if j_meal[0] == '' else j_meal[0], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
+        print("Breakfast")
         for channel in channels:
             if channels_option[channel] == True:
                 await channel.send(embed=embed)
