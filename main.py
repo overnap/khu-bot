@@ -120,7 +120,7 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="일품", value="없음" if j_meal[6] == '' else j_meal[6], inline=False)
         print("Dinner")
         for channel in channels:
-            if channels_option[channel] == True:
+            if channels_option[channel]["meal"] == True:
                 await channel.send(embed=embed)
     # Lunch
     elif ((t.hour == 10 and t.minute > 40) or t.hour > 10) and check_meal[1] == False:
@@ -137,7 +137,7 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="일품2", value="없음" if j_meal[4] == '' else j_meal[4], inline=False)
         print("Lunch")
         for channel in channels:
-            if channels_option[channel] == True:
+            if channels_option[channel]["meal"] == True:
                 await channel.send(embed=embed)
     # Breakfast
     elif ((t.hour == 7 and t.minute > 40) or t.hour > 7) and check_meal[0] == False:
@@ -152,7 +152,7 @@ async def j_meal_alert(t:datetime):
             embed.add_field(name="일품", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
         print("Breakfast")
         for channel in channels:
-            if channels_option[channel] == True:
+            if channels_option[channel]["meal"] == True:
                 await channel.send(embed=embed)
             
 async def main_coroutine():
