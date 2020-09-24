@@ -44,7 +44,7 @@ $ python main.py
 
 Invite the bot to the server and send ```!start``` message on the desired chat channel.  
 This will update the information every 10 minutes and give you a useful alarm.  
-Send ```!stop``` when you want to stop working.
-
+You can turn the j dormitory diet notification on and off with the command ```!meal```.  
+Send ```!stop``` when you want to stop working.  
 
 Command prefix ```!``` and the 10 minutes delay can be modified in config.
