@@ -83,7 +83,7 @@ async def j_dormitory_alert():
                 await channel.send(embed=embed)
             j_data.append(post)
             # Delete old posts for memory management
-            if len(j_data_data) > 15:
+            if len(j_data) > 15:
                 j_data.pop(0)
 
 async def j_meal_alert(t:datetime):
