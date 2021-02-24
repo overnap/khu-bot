@@ -45,7 +45,7 @@ $ python main.py
 Invite the bot to the server and send ```!start``` message on the desired chat channel.  
 This will update the information every 10 minutes and give you a useful alarm.  
 You can turn the specific notification on and off with commands ```!dormitory```, ```!undergraduate``` and so on.  
-Send ```!stop``` when you want to stop working.  
 
 It support Korean commands such as ```!시작```, ```!단과대``` and ```!학식```.  
-Command prefix ```!``` and the 10 minutes delay can be modified in config.
+Command prefix ```!``` and the 10 minutes delay can be modified in config.  
+Use ```!help``` to see a list of commands.
