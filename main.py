@@ -38,7 +38,8 @@ async def khu_undergraduate_alert():
                              url="https://www.khu.ac.kr/kor/notice/list.do?page=1&category=UNDERGRADUATE",
                              icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
             for channel in channels:
-                await channel.send(embed=embed)
+                if channels_option[channel]["undergraduate"]:
+                    await channel.send(embed=embed)
             khuu_data.append(post)
             # Delete old posts for memory management
             if len(khuu_data) > 20:
@@ -55,7 +56,8 @@ async def sw_business_alert():
             embed.set_author(name="SW 사업단", url="http://swedu.khu.ac.kr/html_2018/",
                              icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
             for channel in channels:
-                await channel.send(embed=embed)
+                if channels_option[channel]["business"]:
+                    await channel.send(embed=embed)
             swb_data.append(post)
             # Delete old posts for memory management
             if len(swb_data) > 30:
@@ -72,7 +74,8 @@ async def sw_college_alert():
             embed.set_author(name="SW융합대학", url="http://software.khu.ac.kr/html_2018/",
                              icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
             for channel in channels:
-                await channel.send(embed=embed)
+                if channels_option[channel]["college"]:
+                    await channel.send(embed=embed)
             swc_data.append(post)
             # Delete old posts for memory management
             if len(swc_data) > 20:
@@ -89,7 +92,8 @@ async def j_dormitory_alert():
             embed.set_author(name="제2기숙사", url="https://dorm2.khu.ac.kr/dorm2/",
                              icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
             for channel in channels:
-                await channel.send(embed=embed)
+                if channels_option[channel]["dormitory"]:
+                    await channel.send(embed=embed)
             j_data.append(post)
             # Delete old posts for memory management
             if len(j_data) > 20:
@@ -211,7 +215,11 @@ async def start(ctx):
         channels.append(ctx.channel)
         print("[BOT] The alert started :", ctx.channel)
         if ctx.channel not in channels_option:
-            channels_option[ctx.channel] = {"meal": True}
+            channels_option[ctx.channel] = {"undergraduate": True,
+                                            "business": True,
+                                            "college": True,
+                                            "dormitory": True,
+                                            "meal": True}
             print("[BOT] The new channel has been initialized : ")
         await ctx.send("알리미가 시작되었습니다.")
     else:
@@ -229,6 +237,58 @@ async def stop(ctx):
 
 
 @bot.command()
+async def undergraduate(ctx):
+    if ctx.channel in channels:
+        if channels_option[ctx.channel]["undergraduate"]:
+            channels_option[ctx.channel]["undergraduate"] = False
+            await ctx.send("학사 알림을 껐습니다.")
+        else:
+            channels_option[ctx.channel]["undergraduate"] = True
+            await ctx.send("학사 알림을 켰습니다.")
+    else:
+        await ctx.send("먼저 알리미를 실행해야 합니다.")
+
+
+@bot.command()
+async def business(ctx):
+    if ctx.channel in channels:
+        if channels_option[ctx.channel]["business"]:
+            channels_option[ctx.channel]["business"] = False
+            await ctx.send("사업단 알림을 껐습니다.")
+        else:
+            channels_option[ctx.channel]["business"] = True
+            await ctx.send("사업단 알림을 켰습니다.")
+    else:
+        await ctx.send("먼저 알리미를 실행해야 합니다.")
+
+
+@bot.command()
+async def college(ctx):
+    if ctx.channel in channels:
+        if channels_option[ctx.channel]["college"]:
+            channels_option[ctx.channel]["college"] = False
+            await ctx.send("단과대 알림을 껐습니다.")
+        else:
+            channels_option[ctx.channel]["college"] = True
+            await ctx.send("단과대 알림을 켰습니다.")
+    else:
+        await ctx.send("먼저 알리미를 실행해야 합니다.")
+
+
+@bot.command()
+async def dormitory(ctx):
+    if ctx.channel in channels:
+        if channels_option[ctx.channel]["dormitory"]:
+            channels_option[ctx.channel]["dormitory"] = False
+            await ctx.send("기숙사 알림을 껐습니다.")
+        else:
+            channels_option[ctx.channel]["dormitory"] = True
+            await ctx.send("기숙사 알림을 켰습니다.")
+    else:
+        await ctx.send("먼저 알리미를 실행해야 합니다.")
+
+
+@bot.command()
 async def meal(ctx):
     if ctx.channel in channels:
         if channels_option[ctx.channel]["meal"]:
@@ -239,6 +299,41 @@ async def meal(ctx):
             await ctx.send("학식 알림을 켰습니다.")
     else:
         await ctx.send("먼저 알리미를 실행해야 합니다.")
+
+
+@bot.command()
+async def 시작(ctx):
+    await start(ctx)
+
+
+@bot.command()
+async def 종료(ctx):
+    await stop(ctx)
+
+
+@bot.command()
+async def 학사(ctx):
+    await undergraduate(ctx)
+
+
+@bot.command()
+async def 사업단(ctx):
+    await business(ctx)
+
+
+@bot.command()
+async def 단과대(ctx):
+    await college(ctx)
+
+
+@bot.command()
+async def 기숙사(ctx):
+    await dormitory(ctx)
+
+
+@bot.command()
+async def 학식(ctx):
+    await meal(ctx)
 
 
 bot.run(config["TOKEN"])
