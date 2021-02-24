@@ -24,7 +24,7 @@ pip install -r requirements.txt
 Need Firefox and [geckodriver](https://github.com/mozilla/geckodriver/releases) to get Selenium to work.  
 (probably need Firefox 55+ for headless mode.)
 
-Tested in Python 3.7.*.
+Tested in Python 3.8.*.
 
 
 ## Usage
@@ -47,5 +47,5 @@ This will update the information every 10 minutes and give you a useful alarm.
 You can turn the specific notification on and off with commands ```!dormitory```, ```!undergraduate``` and so on.  
 Send ```!stop``` when you want to stop working.  
 
-It support Korean commands such as ```!시작```, ```!단과대```, ```!학식```.  
+It support Korean commands such as ```!시작```, ```!단과대``` and ```!학식```.  
 Command prefix ```!``` and the 10 minutes delay can be modified in config.
