@@ -220,7 +220,7 @@ async def start(ctx):
                                             "college": True,
                                             "dormitory": True,
                                             "meal": True}
-            print("[BOT] The new channel has been initialized : ")
+            print("[BOT] The new channel has been initialized : ", ctx.channel)
         await ctx.send("알리미가 시작되었습니다.")
     else:
         await ctx.send("이미 알리미가 실행 중입니다.")

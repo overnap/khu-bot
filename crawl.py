@@ -11,8 +11,10 @@ from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 # For headless Firefox
 from selenium.webdriver.firefox.options import Options
+
 options = Options()
 options.add_argument("--headless")
+
 
 # Post data
 class Post:
@@ -21,19 +23,20 @@ class Post:
         self.title = title
         self.date = date
         self.link = link
-    
+
     def __eq__(self, other):
         return self.title == other.title and self.date == other.date
 
-async def khu_undergraduate_crawl():
 
+async def khu_undergraduate_crawl():
     data = []
 
     try:
         loop = asyncio.get_event_loop()
 
         # Timeout after 8 seconds of no load
-        req = functools.partial(requests.get, "https://www.khu.ac.kr/kor/notice/list.do?category=UNDERGRADUATE&page=1", timeout=8)
+        req = functools.partial(requests.get, "https://www.khu.ac.kr/kor/notice/list.do?category=UNDERGRADUATE&page=1",
+                                timeout=8)
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find("table", {"class": "board01"}).find("tbody").find_all("td", {"class": "col02"})
@@ -55,8 +58,8 @@ async def khu_undergraduate_crawl():
     finally:
         return data
 
-async def sw_business_crawl():
 
+async def sw_business_crawl():
     data = []
 
     try:
@@ -75,9 +78,9 @@ async def sw_business_crawl():
             # notice = True if content.text.strip() == "공지" else False
             content = content.find_next_sibling("td", {"class": "td_subject"})
             # skip if there is an [END] mark
-            if regex1.search(content.a.text.strip()) != None:
+            if regex1.search(content.a.text.strip()) is not None:
                 continue
-            elif regex2.search(content.a.text.strip()) != None:
+            elif regex2.search(content.a.text.strip()) is not None:
                 continue
             title = content.a.text.strip()
             link = content.a.attrs["href"]
@@ -93,19 +96,20 @@ async def sw_business_crawl():
     finally:
         return data
 
-async def sw_college_crawl():
 
+async def sw_college_crawl():
     data = []
 
     try:
         loop = asyncio.get_event_loop()
 
         # Timeout after 8 seconds of no load
-        req = functools.partial(requests.get, "http://software.khu.ac.kr/board5/bbs/board.php?bo_table=05_01", timeout=8)
+        req = functools.partial(requests.get, "http://software.khu.ac.kr/board5/bbs/board.php?bo_table=05_01",
+                                timeout=8)
         web = await loop.run_in_executor(None, req)
         soup = BeautifulSoup(web.content, "lxml")
         raw_data = soup.find_all("td", {"class": "td_subject"})
-        
+
         for content in raw_data:
             # TODO: Important mark identification, not used but can be used
             # important = True if content.text.strip() == "중요" else False
@@ -123,8 +127,8 @@ async def sw_college_crawl():
     finally:
         return data
 
-async def j_dormitory_crawl():
 
+async def j_dormitory_crawl():
     data = []
 
     try:
@@ -164,10 +168,10 @@ async def j_dormitory_crawl():
         driver.quit()
         return data
 
-async def j_meal_crawl():
 
+async def j_meal_crawl():
     data = []
-    
+
     try:
         loop = asyncio.get_event_loop()
         drv = functools.partial(webdriver.Firefox, options=options)
@@ -176,7 +180,7 @@ async def j_meal_crawl():
         print("[ERROR] J_MEAL selenium firefox driver error")
         print("ERROR :", error)
         return data
-    
+
     try:
         # Timeout after 90 seconds of no load
         driver.set_page_load_timeout(90)
