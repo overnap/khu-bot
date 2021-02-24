@@ -9,7 +9,7 @@ It automatically crawls various information of the university, and alerts via di
 ![post](https://user-images.githubusercontent.com/61305403/88489283-6866c680-cfce-11ea-9722-2f51ce9f1612.PNG)
 ![meal](https://user-images.githubusercontent.com/61305403/88489278-613fb880-cfce-11ea-88a9-623b6276de97.PNG)
 
-Target:
+Targets:
 - Kyunghee University undergraduate announcements (especially common and international campus post)
 - Kyunghee College of Software announcements
 - Kyunghee software business group announcements
@@ -44,7 +44,8 @@ $ python main.py
 
 Invite the bot to the server and send ```!start``` message on the desired chat channel.  
 This will update the information every 10 minutes and give you a useful alarm.  
-You can turn the j dormitory diet notification on and off with the command ```!meal```.  
+You can turn the specific notification on and off with commands ```!dormitory```, ```!undergraduate``` and so on.  
 Send ```!stop``` when you want to stop working.  
 
+It support Korean commands such as ```!시작```, ```!단과대```, ```!학식```.  
 Command prefix ```!``` and the 10 minutes delay can be modified in config.
