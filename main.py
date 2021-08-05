@@ -89,7 +89,7 @@ async def j_dormitory_alert():
         if not exist:
             print("[Main] New Post :", post.title)
             embed = discord.Embed(title=post.title, description=post.link, color=0x568DF5)
-            embed.set_author(name="제2기숙사", url="https://dorm2.khu.ac.kr/dorm2/",
+            embed.set_author(name="제2기숙사", url="https://dorm2.khu.ac.kr",
                              icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
             for channel in channels:
                 if channels_option[channel]["dormitory"]:
@@ -125,7 +125,7 @@ async def j_meal_alert(t: datetime):
     elif ((t.hour == 17 and t.minute > 5) or t.hour > 17) and not check_meal[2]:
         check_meal = [True, True, True]
         embed = discord.Embed(title="제2기숙사", description="석식 메뉴", color=0x59DE6D)
-        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/dorm2/40/4050.kmc",
+        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/40/4050.kmc",
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends
@@ -141,7 +141,7 @@ async def j_meal_alert(t: datetime):
     elif ((t.hour == 10 and t.minute > 40) or t.hour > 10) and not check_meal[1]:
         check_meal = [True, True, False]
         embed = discord.Embed(title="제2기숙사", description="중식 메뉴", color=0x59DE6D)
-        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/dorm2/40/4050.kmc",
+        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/40/4050.kmc",
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends
@@ -159,7 +159,7 @@ async def j_meal_alert(t: datetime):
     elif ((t.hour == 7 and t.minute > 40) or t.hour > 7) and not check_meal[0]:
         check_meal = [True, False, False]
         embed = discord.Embed(title="제2기숙사", description="조식 메뉴", color=0x59DE6D)
-        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/dorm2/40/4050.kmc",
+        embed.set_author(name="오늘의 학식", url="https://dorm2.khu.ac.kr/40/4050.kmc",
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends

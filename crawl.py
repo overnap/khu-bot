@@ -143,7 +143,7 @@ async def j_dormitory_crawl():
     try:
         # Timeout after 90 seconds of no load
         driver.set_page_load_timeout(90)
-        await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/dorm2/00/0000.kmc")
+        await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/00/0000.kmc")
 
         # Waiting for web load to avoid errors
         await asyncio.sleep(2)
@@ -184,7 +184,7 @@ async def j_meal_crawl():
     try:
         # Timeout after 90 seconds of no load
         driver.set_page_load_timeout(90)
-        await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/dorm2/40/4050.kmc")
+        await loop.run_in_executor(None, driver.get, "https://dorm2.khu.ac.kr/40/4050.kmc")
 
         # Waiting for web load to avoid errors
         await asyncio.sleep(2)
