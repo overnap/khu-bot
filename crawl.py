@@ -153,7 +153,7 @@ async def j_dormitory_crawl():
 
         for content in raw_data:
             title = content.a.text.strip()
-            link = "https://dorm2.khu.ac.kr/dorm2/bbs/getBbsWriteView.kmc?bbs_locgbn=K1&bbs_id=notice&seq="
+            link = "https://dorm2.khu.ac.kr/bbs/getBbsWriteView.kmc?bbs_locgbn=K1&bbs_id=notice&seq="
             link += content.a.attrs["onclick"][8:13]
             date = int(content.span.text.replace('.', ''))
             post = Post(title, date, link)
