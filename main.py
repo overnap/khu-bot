@@ -129,7 +129,8 @@ async def j_meal_alert(t: datetime):
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends
-            embed.add_field(name="한식", value="없음" if j_meal[2] == '' else j_meal[2], inline=False)
+            # embed.add_field(name="한식", value="없음" if j_meal[2] == '' else j_meal[2], inline=False)
+            pass
         else:
             embed.add_field(name="한식", value="없음" if j_meal[5] == '' else j_meal[5], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[6] == '' else j_meal[6], inline=False)
@@ -145,7 +146,8 @@ async def j_meal_alert(t: datetime):
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends
-            embed.add_field(name="한식", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
+            # embed.add_field(name="한식", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
+            pass
         else:
             # Lunch has first class 1 and first class 2
             embed.add_field(name="한식", value="없음" if j_meal[2] == '' else j_meal[2], inline=False)
@@ -163,7 +165,8 @@ async def j_meal_alert(t: datetime):
                          icon_url="http://www.google.com/s2/favicons?domain=https://www.khu.ac.kr/kor/main/index.do")
         if t.weekday() == 5 or t.weekday() == 6:
             # Korean food only on weekends
-            embed.add_field(name="한식", value="없음" if j_meal[0] == '' else j_meal[0], inline=False)
+            # embed.add_field(name="한식", value="없음" if j_meal[0] == '' else j_meal[0], inline=False)
+            pass
         else:
             embed.add_field(name="한식", value="없음" if j_meal[0] == '' else j_meal[0], inline=False)
             embed.add_field(name="일품", value="없음" if j_meal[1] == '' else j_meal[1], inline=False)
