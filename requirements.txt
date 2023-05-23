@@ -1,6 +1,6 @@
-﻿bs4==0.0.1
+bs4==0.0.1
 discord.py==1.3.4
 lxml==4.9.1
 pytz==2020.1
-requests==2.24.0
+requests==2.31.0
 selenium==3.141.0
