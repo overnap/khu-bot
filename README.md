@@ -1,6 +1,11 @@
 # khu-bot
+
 A Discord notification bot for Kyunghee Univ CE students  
 It automatically crawls various information of the university, and alerts via discord when new posts are posted.  
+
+### Important Note
+This project has been archived as it hasn't been updated since the author graduated.  
+To use it, please ensure you update the libraries for security reasons and respond to site updates.  
 
 ![post](https://user-images.githubusercontent.com/61305403/88489283-6866c680-cfce-11ea-9722-2f51ce9f1612.PNG)
 ![meal](https://user-images.githubusercontent.com/61305403/88489278-613fb880-cfce-11ea-88a9-623b6276de97.PNG)
